@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-int linearSearch(int array[], int target);
+int linearSearch(NSMutableArray *array, int target);
 
 int MILLION = 1000000;
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        int array[MILLION];
+        NSMutableArray *array = [@[] mutableCopy];
         
         for (int i = 0; i < MILLION; i++) {
-            array[i] = i;
+            [array addObject:[NSNumber numberWithInt:i]];
         }
         
         NSDate *methodStart = [NSDate date];
@@ -34,9 +34,9 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-int linearSearch(int array[], int target) {
-    for (int i = 0; i < MILLION; i++) {
-        if(array[i] == target) {
+int linearSearch(NSMutableArray *array, int target) {
+    for (int i = 0; i < array.count; i++) {
+        if([array[i] integerValue] == target) {
             return i;
         }
     }
